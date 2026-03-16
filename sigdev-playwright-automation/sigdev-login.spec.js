@@ -1,13 +1,6 @@
 import {test, expect} from '@playwright/test'
 
-test('user can login successfully ' , async ({page}) => {
-await page.goto ('https://sigdev-dev.thetie.io/sign_in');
+import LoginPage from '../pages/loginPage.js'
+import users from '../testdata/users.json' assert {type: 'json'};
 
-await page.getByRole ('button' , {name: 'Sign In'}).click();
-
-await page.getByText('Email address *').fill('shahid33350@gmail.com');
-await page.getByText('Password *').fill('Test@123');
-
-await page.getByRole('button', { name: 'Continue' }).click();
-    await expect(page).not.toHaveURL('https://sigdev-dev.thetie.io/');
-});
+test('User can login successfully', async ({page})) => {}
