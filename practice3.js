@@ -6,28 +6,34 @@ this.balance= balance;
 
 }
 deposit(amount){
-    
-    console.log(this.owner + " deposited ", + this.balance);
     this.balance=this.balance + amount;
-    console.log("new balance is ", + this.balance);
+    console.log(this.owner + " deposited " + amount);
+    
+    console.log("new balance is "+ this.balance);
 
 }
 
 withdraw(amount){
-        this.balance=this.balance - amount;
-        console.log(this.owner+ " withdraw " +this.balance);
+         this.balance=this.balance - amount;
+        console.log(this.owner + " withdraw " +amount);
+       
+    console.log(this.owner + " new balance is  " +this.balance);
 
 }
 
 showbalance(){
 
-console.log("show balance");
+console.log(this.owner +" balance " +this.balance);
 }
 
 }
 
-const Alice= new BankAccount("Alice", 500);
-const Bob= new BankAccount("Bob", 300);
+const Alice= new BankAccount("Alice", 1000);
+const Bob= new BankAccount("Bob", 1000);
 
-Alice.deposit(1000);
+Alice.deposit(500);
 Alice.withdraw(200);
+Alice.showbalance();
+Bob.deposit(300);
+Bob.withdraw(100);
+Bob.showbalance();
