@@ -1,30 +1,37 @@
-class LoginPage{
+import{expect} from '@playwright/test'
+export class LoginPage{
 
-    constructor(page){
-        this.page=page;
-
-       
-    }
-
- async gotoLoginPage(){
-            await this.page.goto('https://sigdev-dev.thetie.io/users/sign_in');
-        }
-
-        async clickSignInButton(){
-            await this.page.getByRole('button', {name: 'Sign In'}).click();
-        }
-
-        async fillEmail(email){
-             await this.page.getByText('Email address *').fill(email);
-        }
-
-        async fillPassword(password){
-            await this.page.getByText('Password *').fill(password);
-        }
-
-        async clickContinueButton(){
-            await this.page.getByRole('button',{name: 'Continue'}).click();
-        }
+constructor(page){
+this.page= page;
 }
 
-export default LoginPage;
+async goto(){
+
+await this.page.goto("https://sigdev-dev.thetie.io/users/sign_in");
+
+
+}
+
+async login(email, password){
+
+    await this.page.getByRole('button', { name: 'Sign in' }).click();
+    await this.page.getByRole('textbox',{name: 'Email address'} ).fill(email);
+    await this.page.getByRole('textbox', {name: 'Password'}).fill(password);
+    await this.page.getByRole('button', {name: 'Continue'}).click();
+
+}
+
+async verifyLoggedIn(){
+
+    await expect(this.page).toHaveURL(/dashboard/);
+
+
+}
+
+
+
+}
+
+
+//   await page.getByRole('textbox', { name: 'Email address' }).click();
+// });
