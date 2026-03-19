@@ -18,8 +18,6 @@ AddMark(mark){
 
 }
 
-
-
 Pass(){
      if(this.grade >= 50){
         console.log(this.name +" is passed");
