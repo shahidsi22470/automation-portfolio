@@ -4,10 +4,18 @@ import users from '../testdata/users.json' assert { type: 'json' }
 
 const randomEmail = () => `test${Date.now()}@example.com`;
 
+let loginpage;
+
+test.beforeEach(async ({page}) =>{
+
+loginpage =new LoginPage(page);
+await loginpage.goto();
+
+})
+
 test('Verify valid user can login to system', async ({page}) => {
 
-    const loginpage = new LoginPage(page);
-    await loginpage.goto();
+
 
     await loginpage.login(users.validUser.email, users.validUser.password);
 
@@ -18,8 +26,7 @@ test('Verify valid user can login to system', async ({page}) => {
 
 
   test('verify the invalid credentials', async ({ page }) => {
-    const loginpage = new LoginPage(page);
-    await loginpage.goto();
+    
     await loginpage.login(randomEmail(), 'wrongpassword');
     await loginpage.verifyInvalidLogin();
 });
@@ -27,8 +34,7 @@ test('Verify valid user can login to system', async ({page}) => {
 
 test('Verify the error message on empty email/password', async ({page}) => {
 
-const loginpage = new LoginPage(page);
-await loginpage.goto();
+
 await loginpage.login("","");
 await loginpage.verifyEmptyEmailField();
 await loginpage.verifyEmptyPasswordField();
@@ -48,8 +54,7 @@ await loginpage.verifyEmptyPasswordField();
 
 test('Verify Forgot Password Button is present', async ({page}) => {
 
-const loginpage = new LoginPage(page);
-await loginpage.goto();
+
 await loginpage.verifyFogotPasswordFunctionality();    
 
 })
