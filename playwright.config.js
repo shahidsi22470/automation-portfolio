@@ -13,9 +13,9 @@ import { defineConfig, devices } from '@playwright/test';
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  testDir: './',
-  /* Run tests in files in parallel */
+testDir: './sigdev-playwright-automation',  /* Run tests in files in parallel */
   fullyParallel: true,
+  
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
@@ -28,6 +28,11 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
+
+       screenshot: 'only-on-failure',
+
+    // record video only when test FAILS
+    video: 'on-first-retry',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
