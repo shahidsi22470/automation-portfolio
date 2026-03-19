@@ -1,3 +1,54 @@
 import {test} from '@playwright/test'
 import { LoginPage } from '../pages/LoginPage.js'
-import users from '../testdata/users.json' assert {type: 'json'}
+import users from '../testdata/users.json' assert { type: 'json' }
+
+
+test('Verify valid user can login to system', async ({page}) => {
+
+    const loginpage = new LoginPage(page);
+    await loginpage.goto();
+
+    await loginpage.login(users.validUser.email, users.validUser.password);
+
+    await loginpage.verifyLoggedIn();
+
+    
+})
+test('verify the invalid credentials ', async ({page}) => {
+
+    const loginpage = new LoginPage(page);
+     await loginpage.goto();
+
+    await loginpage.login(users.invalidUser.email, users.invalidUser.password);
+    await loginpage.verifyInvalidLogin(); // only checks error
+
+})
+
+test('Verify the error message on empty email/password', async ({page}) => {
+
+const loginpage = new LoginPage(page);
+await loginpage.goto();
+await loginpage.login("","");
+await loginpage.verifyEmptyEmailField();
+await loginpage.verifyEmptyPasswordField();
+
+
+})
+
+// test('verify empty password field', async({page}) => {
+
+// const loginpage = new LoginPage(page);
+// await loginpage.goto();
+// await loginpage.login("","");
+
+
+
+// })
+
+test('Verify Forgot Password Button is present', async ({page}) => {
+
+const loginpage = new LoginPage(page);
+await loginpage.goto();
+await loginpage.verifyFogotPasswordFunctionality();    
+
+})
