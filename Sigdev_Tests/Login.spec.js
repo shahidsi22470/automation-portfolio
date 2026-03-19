@@ -2,6 +2,7 @@ import {test} from '@playwright/test'
 import { LoginPage } from '../pages/loginPage.js'
 import users from '../testdata/users.json' assert { type: 'json' }
 
+const randomEmail = () => `test${Date.now()}@example.com`;
 
 test('Verify valid user can login to system', async ({page}) => {
 
@@ -14,15 +15,15 @@ test('Verify valid user can login to system', async ({page}) => {
 
     
 })
-test('verify the invalid credentials ', async ({page}) => {
 
+
+  test('verify the invalid credentials', async ({ page }) => {
     const loginpage = new LoginPage(page);
-     await loginpage.goto();
+    await loginpage.goto();
+    await loginpage.login(randomEmail(), 'wrongpassword');
+    await loginpage.verifyInvalidLogin();
+});
 
-    await loginpage.login(users.invalidUser.email, users.invalidUser.password);
-    await loginpage.verifyInvalidLogin(); // only checks error
-
-})
 
 test('Verify the error message on empty email/password', async ({page}) => {
 

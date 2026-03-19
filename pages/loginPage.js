@@ -1,5 +1,11 @@
 import{expect} from '@playwright/test'
+
+const randomEmail = () => `test${Date.now()}@example.com`;
+
+
 export class LoginPage{
+
+    
 
 constructor(page){
 this.page= page;
