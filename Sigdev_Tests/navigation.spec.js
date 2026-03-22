@@ -6,7 +6,6 @@ import { NavigationPanel } from "../pages/NavigationPanel.js";
 let loginpage;
 let navpanel;
 
-
 test.beforeEach( async({page}) =>{
 
     loginpage = new LoginPage(page);
