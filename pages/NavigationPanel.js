@@ -24,35 +24,21 @@ export class NavigationPanel {
     async verifyNavigationItems() {
         await this.openMenuIfClosed();
 
-        // top bar
         await expect(this.page.getByText('Messenger')).toBeVisible();
-
-        // MY DOCK section
         await expect(this.page.getByText('My Dock', { exact: true })).toBeVisible();
-
-        // MENU section — use exact: true to avoid matching dashboard names in the list
         await expect(this.page.getByRole('link', { name: 'News', exact: true })).toBeVisible();
         await expect(this.page.getByRole('link', { name: 'Screener', exact: true })).toBeVisible();
         await expect(this.page.getByRole('link', { name: 'Chart', exact: true })).toBeVisible();
-        await expect(this.page.getByText('Companies', { exact: true })).toBeVisible();
-        await expect(this.page.getByText('Alerts', { exact: true })).toBeVisible();
-        await expect(this.page.getByText('Additional Pages', { exact: true })).toBeVisible();
-
-        // NEW AND TRENDING section
-
-
-
-
-        
+        await expect(this.page.getByLabel('Menu').getByRole('button', { name: 'Companies' }).first()).toBeVisible();
+        await expect(this.page.getByLabel('Menu').getByRole('button', { name: 'Alerts' }).first()).toBeVisible();
+        await expect(this.page.getByLabel('Menu').getByRole('button', { name: 'Additional Pages' }).first()).toBeVisible();
     }
 
     async openMenuIfClosedSecond() {
-        // always click to toggle
         await this.page.getByRole('button', { name: 'New and Trending' }).click();
         await this.page.waitForTimeout(800);
 
-        // if News still not visible — sidebar was already open, click again to reopen
-        const isVisible = this.page.getByRole('button', { name: 'Crypto ETFs', exact: true }).isVisible();
+        const isVisible = await this.page.getByRole('button', { name: 'Crypto ETFs' }).isVisible();
         if (!isVisible) {
             await this.page.getByRole('button', { name: 'New and Trending' }).click();
             await this.page.waitForTimeout(800);
