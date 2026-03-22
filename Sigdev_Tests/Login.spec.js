@@ -1,4 +1,5 @@
 import {test} from '@playwright/test'
+import { LoginPage } from '../pages/LoginPage';
 import users from '../testdata/users.json' assert { type: 'json' }
 
 const randomEmail = () => `test${Date.now()}@example.com`;
