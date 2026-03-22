@@ -21,7 +21,10 @@ test('Verify the side Nav menu items are present', async ({page}) =>{
 
 
     await navpanel.verifyNavigationItems();
+
+
     await navpanel.openMenuIfClosedSecond();
     await navpanel.verifyNavigationItemsSecond();
+    // knkbkjh
 
 })
