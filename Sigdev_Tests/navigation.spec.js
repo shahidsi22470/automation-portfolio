@@ -12,6 +12,8 @@ test.beforeEach( async({page}) =>{
     await loginpage.goto();
     await loginpage.login(users.validUser.email, users.validUser.password);
 
+    await page.waitForURL(/dashboard/); 
+
     navpanel = new NavigationPanel(page);
 
 })
