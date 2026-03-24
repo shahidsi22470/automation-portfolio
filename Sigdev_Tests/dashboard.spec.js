@@ -4,6 +4,9 @@ import { Dashboard } from "../pages/Dashboard.js";
 let dashboard;
 
 test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+        Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+    });
     await page.goto('/dashboard');
     await page.waitForLoadState('domcontentloaded');
     dashboard = new Dashboard(page);

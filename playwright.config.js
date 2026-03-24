@@ -6,13 +6,21 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : 4,
+  workers: 1,
   reporter: 'html',
+  expect: {
+    timeout: 15000,
+  },
   use: {
     baseURL: 'https://sigdev-dev.thetie.io',
+    actionTimeout: 15000,
+    navigationTimeout: 30000,
     screenshot: 'only-on-failure',
     video: 'on-first-retry',
     trace: 'on-first-retry',
+    launchOptions: {
+      args: ['--disable-blink-features=AutomationControlled'],
+    },
   },
 
   projects: [

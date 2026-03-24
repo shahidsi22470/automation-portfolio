@@ -6,7 +6,10 @@ export class Dashboard {
         this.page = page;
     }
 
-    // GETTERS
+    // ─────────────────────────────────────────
+    // GETTERS — Locators
+    // ─────────────────────────────────────────
+
     get dashboardSelection() {
         return this.page.getByText('Dashboard Selection');
     }
@@ -23,6 +26,7 @@ export class Dashboard {
         return this.page.getByText('Create Dashboard Group');
     }
 
+    // ⚠️ Fragile selectors — update with real data-testid or aria-label once known
     get listViewBtn() {
         return this.page.getByRole('button').filter({ hasText: /^$/ }).nth(3);
     }
@@ -79,7 +83,10 @@ export class Dashboard {
         return this.page.locator('input[placeholder="Search"]').last();
     }
 
-    // METHODS
+    // ─────────────────────────────────────────
+    // VERIFY METHODS — Assertions only
+    // ─────────────────────────────────────────
+
     async verifyDashboardFunctionality() {
         await expect(this.dashboardSelection).toBeVisible();
     }
@@ -96,14 +103,12 @@ export class Dashboard {
         await expect(this.createDashboardGroupBtn).toBeVisible();
     }
 
-    async verifyListViewToggle() {
-        await this.listViewBtn.click();
-        await expect(this.listViewBtn).toBeVisible();
+    async verifyListViewActive() {
+        await expect(this.listViewBtn).toHaveAttribute('aria-pressed', 'true');
     }
 
-    async verifyGridViewToggle() {
-        await this.gridViewBtn.click();
-        await expect(this.gridViewBtn).toBeVisible();
+    async verifyGridViewActive() {
+        await expect(this.gridViewBtn).toHaveAttribute('aria-pressed', 'true');
     }
 
     async verifyFavoritesDropdown() {
