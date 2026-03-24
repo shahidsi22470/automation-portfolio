@@ -12,10 +12,13 @@ this.page= page;
 }
 
 async goto(){
-
+    await this.page.addInitScript(() => {
+        Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+    });
     await this.page.goto("https://sigdev-dev.thetie.io/users/sign_in");
-   await this.page.getByRole('button', { name: 'Sign in' }).click();
-       await this.page.waitForURL(/auth0/);
+    await this.page.waitForLoadState('domcontentloaded');
+    await this.page.getByRole('button', { name: 'Sign in' }).click();
+    await this.page.waitForURL(/auth0/);
 
 
 }

@@ -4,7 +4,11 @@ import { NavigationPanel } from "../pages/NavigationPanel.js"
 let navpanel;
 
 test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+        Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+    });
     await page.goto('/dashboard');
+    await page.waitForLoadState('domcontentloaded');
     navpanel = new NavigationPanel(page);
 })
 
