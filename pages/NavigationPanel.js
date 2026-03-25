@@ -9,7 +9,7 @@ export class NavigationPanel {
     }
 
     async openMenuIfClosed() {
-        // always click to toggle
+        await this.page.getByRole('button', { name: 'Menu' }).waitFor({ state: 'visible' });
         await this.page.getByRole('button', { name: 'Menu' }).click();
         await this.page.waitForTimeout(800);
 

@@ -13,6 +13,7 @@ export default defineConfig({
   },
   use: {
     baseURL: 'https://sigdev-dev.thetie.io',
+    viewport: { width: 1920, height: 1080 },
     actionTimeout: 15000,
     navigationTimeout: 30000,
     screenshot: 'only-on-failure',
@@ -40,12 +41,27 @@ export default defineConfig({
     },
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'], storageState: 'auth.json' },
+      use: {
+        ...devices['Desktop Firefox'],
+        storageState: 'auth.json',
+        userAgent: 'Mozilla/5.0 (X11; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0',
+        launchOptions: {
+          args: ['--no-sandbox', '--disable-setuid-sandbox'],
+          firefoxUserPrefs: {
+            'dom.webdriver.enabled': false,
+            'useAutomationExtension': false,
+          },
+        },
+      },
       dependencies: ['setup'],
     },
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'], storageState: 'auth.json' },
+      use: {
+        ...devices['Desktop Safari'],
+        storageState: 'auth.json',
+        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15',
+      },
       dependencies: ['setup'],
     },
   ],
