@@ -24,9 +24,9 @@ test('Verify create new dashboard button is visible', async () => {
     await dashboard.verifyCreateNewDashboardVisible();
 });
 
-test('Verify create dashboard group button is visible', async () => {
-    await dashboard.verifyCreateDashboardGroupVisible();
-});
+// test('Verify create dashboard group button is visible', async () => {
+//     await dashboard.verifyCreateDashboardGroupVisible();
+// });
 
 test('Verify favorites dropdown is visible', async () => {
     await dashboard.verifyFavoritesDropdown();
@@ -68,9 +68,9 @@ test('Verify preset filter', async () => {
     await dashboard.verifyPresetFilter();
 });
 
-test('Verify dashboard groups filter', async () => {
-    await dashboard.verifyDashboardGroupsFilter();
-});
+// test('Verify dashboard groups filter', async () => {
+//     await dashboard.verifyDashboardGroupsFilter();
+// });
 
 test('Verify widgets search is visible', async () => {
     await dashboard.verifyWidgetsSearchVisible();

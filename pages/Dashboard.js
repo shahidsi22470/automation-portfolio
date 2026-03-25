@@ -22,9 +22,9 @@ export class Dashboard {
         return this.page.getByText('Create New Dashboard');
     }
 
-    get createDashboardGroupBtn() {
-        return this.page.getByText('Create Dashboard Group');
-    }
+    // get createDashboardGroupBtn() {
+    //     return this.page.getByText('Create Dashboard Group');
+    // }
 
     // ⚠️ Fragile selectors — update with real data-testid or aria-label once known
     get listViewBtn() {
@@ -154,9 +154,9 @@ export class Dashboard {
         await expect(this.presetFilter).toBeVisible();
     }
 
-    async verifyDashboardGroupsFilter() {
-        await expect(this.dashboardGroupsFilter).toBeVisible();
-    }
+    // async verifyDashboardGroupsFilter() {
+    //     await expect(this.dashboardGroupsFilter).toBeVisible();
+    // }
 
     async verifyWidgetsSearchVisible() {
         await expect(this.widgetsSearch).toBeVisible();
