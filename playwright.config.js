@@ -19,7 +19,11 @@ export default defineConfig({
     video: 'on-first-retry',
     trace: 'on-first-retry',
     launchOptions: {
-      args: ['--disable-blink-features=AutomationControlled'],
+      args: [
+        '--disable-blink-features=AutomationControlled',
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+      ],
     },
   },
 

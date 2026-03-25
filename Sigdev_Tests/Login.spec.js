@@ -4,6 +4,9 @@ import users from '../testdata/users.json' assert { type: 'json' }
 
 const randomEmail = () => `test${Date.now()}@example.com`;
 
+// Login tests must run without stored session
+test.use({ storageState: { cookies: [], origins: [] } });
+
 let loginpage;
 
 test.beforeEach(async ({page}) =>{

@@ -90,6 +90,9 @@ export class Dashboard {
     async verifyDashboardFunctionality() {
         await expect(this.dashboardSelection).toBeVisible();
     }
+    // get searchDashboards() {
+    //     return this.page.getByPlaceholder('Search Dashboards');
+    // }
 
     async verifySearchDashboardsVisible() {
         await expect(this.searchDashboards).toBeVisible();
